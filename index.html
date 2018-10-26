@@ -5,7 +5,21 @@
 </head>
 <body>
 
+    <img id="introScreen" src = "./assets/PhotoMemo.gif">
+
+
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
+
+    <button>START</button>
     <script>
+
+    $(document).ready(function(){
+        $("#introScreen").click(function(){
+            $(this).hide();
+        });
+    });
+
     var config = {
         type: Phaser.AUTO,
         width: 800,

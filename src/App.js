@@ -5,12 +5,12 @@ import './App.css';
 class App extends Component {
 
   score = 0;
+  hasBegun = false;
 
   render() {
     return (
       <div className="App">
         <header>
-            <meta charset="utf-8" />
             <title>Word Game</title>
         </header>
 
@@ -18,28 +18,54 @@ class App extends Component {
           Score : {this.score}
         </p>
 
-      <img src={ require('../assets/PhotoMemo.gif' )} />
+      {this.showStartingImage()}
       <br/>
-      <button id="beginButton" onclick={this.beginButtonOnClickHandler()}>BEGIN</button>
+        
+      {this.showStartingButton()}
+        
 
-      <form onsubmit={this.onSubmit()}>
-          <input type="text"/>
-      </form>
+      {this.showTextBox()}
       </div>
     );
   }
 
-  beginButtonOnClickHandler(){
+  beginButtonOnClickHandler(hasBegun){
+    hasBegun = true;
+    console.log(this.hasBegun)
+  }
 
+  showStartingButton(){
+    console.log(this.hasBegun);
+    if(!this.hasBegun){
+      return (<button onClick={this.beginButtonOnClickHandler.bind(this.hasBegun)}>BEGIN</button>)
+    }
+    return;
   }
 
   onSubmit(){
 
   }
 
+  showStartingImage(){
+    if(!this.hasBegun){
+      return(<img src={ require('./assets/PhotoMemo.gif' )} />);
+    }
+    return;
+  }
+
   verifyAnswer(){
 
   }
+
+  showTextBox(){
+    if(this.hasBegun){
+      return (  
+        <form onSubmit={this.onSubmit()}>
+          <input type="text"/>
+        </form>);
+    }
+  }
+
 }
 
 export default App;
